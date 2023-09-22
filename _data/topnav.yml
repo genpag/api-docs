@@ -1,0 +1,16 @@
+## Topnav single links
+## if you want to list an external url, use external_url instead of url. the theme will apply a different link base.
+topnav:
+- title: Topnav
+  items:
+    - title: Gen
+      external_url: https://gen.com.br
+    - title: Seu Negócio
+      external_url: https://gen.com.br/business
+    - title: Referência API
+      external_url: https://docs.gen.com.br
+
+#Topnav dropdowns
+
+
+# Copyright 2021 Google LLC

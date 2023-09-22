@@ -1,0 +1,9 @@
+{
+    "name": "API Docs Container",
+    "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+    },
+    "build": { "dockerfile": "Dockerfile" },
+    "forwardPorts": [4000]
+
+}
