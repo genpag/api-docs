@@ -1,9 +1,9 @@
 ---
-title: Gerando cobranças
-keywords: cobranças, pagamentos, split de pagamentos, crédito, pix, boleto
+title: Gerando pedidos
+keywords: pedidos, pagamentos, split de pagamentos, crédito, pix, boleto
 last_updated: July 3, 2016
-tags: [cobranças, pagamentos, split, crédito, pix, boleto]
-summary: "Veja como gerar cobranças e escolher os métodos de pagamento que irá aceitar"
+tags: [pedidos, pagamentos, split, crédito, pix, boleto]
+summary: "Veja como gerar pedidos e escolher os métodos de pagamento que irá aceitar"
 sidebar: mydoc_sidebar
 permalink: gerando-pedidos.html
 folder: pagamentos
@@ -15,7 +15,7 @@ Neste guia vamos ver como cadastrar uma fatura através de nossa API. Antes de r
 * Escolher e restringir os métodos de pagamento a serem aceitos (opcional);
 * Escolher o número máximo de parcelas (opcional);
 * Cadastrar o cliente que irá efetuar o pagamento (opcional).
-* Cadastrar taxas para serem dividas entre outros estabelecimentos cadastrados na Gen (Split de Pagamentos)
+* Cadastrar taxas para serem dividas entre outros estabelecimentos cadastrados na Gen (Somente para split de pagamentos)
 
 ## Criando a fatura
 
@@ -38,7 +38,6 @@ curl -X POST 'https://api-sandbox.genpag.com.br/api/sellers/:sellerId/orders' \
                     "unit_price_cents": 2290
                 }
             ],
-            "customer_id": "28f7cfc6-465c-99d3-d0ff-80367b49ce12",
             "customer": {
                 "name": "Jhon Trevor",
                 "email": "customer@email.com",
@@ -46,17 +45,18 @@ curl -X POST 'https://api-sandbox.genpag.com.br/api/sellers/:sellerId/orders' \
                 "phone": "+5562992929292",
                 "birth_date": "1965-08-10",
                 "cnpj": "12345678000166",
-                address": {
+                "address": {
                   "line1": "Rua tal",
                   "line2": "0",
-                  "line3": "QD 2, LT 1, Ed. Sala 100"
+                  "line3": "QD 2, LT 1, Ed. Sala 100",
                   "neighborhood": "Centro",
                   "city": "São Paulo",
                   "state": "SP",
                   "country_code": "BR",
                   "postal_code": "01153-000"
-              }
+                }
             },
+            "external_id": "id-sua-plataforma-123"
         }
     }'
 ```
@@ -79,6 +79,7 @@ curl -X POST 'https://api-sandbox.genpag.com.br/api/sellers/:sellerId/orders' \
     * **cnpj**: CNPJ do cliente se for pessoa jurídica
     * **phone**: Telefone do cliente
     * **email**: E-mail do cliente
+* **external_id**: O ID de identificação da fatura na sua plataforma. Essa informação é opcional
 
 
 ## Restringindo formas de pagamento
@@ -87,7 +88,7 @@ As formas de pagamento disponíveis na plataforma são:
 * Cartão de crédito;
 * Boleto;
 * PIX.
-Por padrão, todos os métodos são aceitos para uma fatura recém criada, mas você pode restringir quais formas de pagamento podem ser utilizadas em um pedido específico utilizando o campo **methods**.
+Por padrão, todos os métodos ativados são aceitos para uma fatura recém criada, mas você pode restringir quais formas de pagamento podem ser utilizadas de forma global em sua conta através da nossa plataforma web ou em um pedido específico utilizando o campo **methods**.
 
 Os valores disponíveis são:
 
@@ -135,27 +136,18 @@ curl -X POST 'https://api-sandbox.genpag.com.br/api/sellers/:sellerId/orders' \
     }'
 ```
 
-## Split de pagamentos para estabelecimentos parceiros
+## Integrando com nosso checkout
 
-Ao criar uma nova fatura, você pode especificar uma lista de estabelecimentos parceiros para receber um valor fixo ou percentual da transação atual como pagamento de taxas ou comissões, por exemplo. Para isso basta enviar no campo **order_fees** uma lista de objetos contendo:
-* **seller_id**: ID do estabelecimento parceiro
-* **percent**: percentual da transação atual que ele ira raceber
-* **amount_cents**: Valor fixo, em centavos que ele ira receber pela transação. Se for informado, esse valor se sobrepoe ao campo percent
-* **method**: Metodo de pagamento à qual essa taxa se aplica. É ecessário inserir uma entrada para cada método de pagamento e estabelecimento parceiro;
-Confira o exempo a seguir:
-
-## Página de Checkout
-
-Se você quiser uma integração rápida, disponibilizamos uma página de checkout pronta, basta redirecionar o usuário para noss checkout que final do fluxo redirecionamos ele de volta para seu sistema.
-Após criar o pedido, utilize o padrão de URL a seguir:
+Se você quiser uma integração rápida, disponibilizamos uma página de checkout pronta, basta redirecionar o usuário para nosso checkout que ao final do fluxo redirecionamos ele de volta para seu sistema.
+Após criar o pedido, utilize o padrão de URL a seguir para redirecionar o usuário:
 
 // Ambiente de homologação
-// https://app-sandbox.genpag.com.br/orders/:id?redirectTo=<sua_url>
-"https://app-sandbox.genpag.com.br/orders/6d4476d7-542a-543b-81ca-966618b9f48a?redirectTo=https://example.com"
+// https://checkout.dev.gen.com.br/external/order/:id?redirectTo=<sua_url>
+"https://checkout.dev.gen.com.br/external/order/:id?redirectTo=https://example.com"
 
 // Ambiente de produção
-// https://app.genpag.com.br/orders/:id?redirectTo=<sua_url>
-"https://app.genpag.com.br/orders/6d4476d7-542a-543b-81ca-966618b9f48a?redirectTo=https://example.com"
+// https://checkout.gen.com.br/external/order/:id?redirectTo=<sua_url>
+"https://checkout.gen.com.br/external/order/:id?redirectTo=https://example.com"
 
 
 No campo :id utilize o ID do pedido gerado anteriormente e o usuário final irá acessar a interface de checkout.
@@ -164,8 +156,8 @@ No campo :id utilize o ID do pedido gerado anteriormente e o usuário final irá
 ## Pŕoximos passos
 
 Após gerar uma fatura, o próximo passo é registrar um ou mais pagamentos para completar o valor total da fatura. Vocẽ pode fazer isso usando nosso checkout, você só vai precisar do ID da fatura gerada, ou através de nossa API. Caso queira customizar toda a experiência do usuário veja os pŕoximos passos:
-* Aprenda a gerar boletos para faturas criadas;
-* Aprenda a gerar PIX de cobrança;
+* Aprenda a gerar boletos para faturas criadas. Ver Tutorial;
+* Aprenda a gerar PIX de cobrança. [Ver Tutorial]({% link pages/pagamentos/gerando_um_pix.md %});
 * Veja como realizar o pagamento de uma fatura utilizando cartão de crédito;
 * Cadasre webhooks para receber notificações de eventos da nossa API no seu sistema.
 

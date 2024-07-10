@@ -10,7 +10,7 @@ folder: pagamentos
 ---
 ## Introdução
 
-Depois de ter cadastrado um pedido, o próximo passo é registrar um ou mais pagamentos para o pedido gerado. Neste guia vamos ver como gerar PIX de cobrança para pagar um pedido:
+Depois de ter cadastrado um pedido, o próximo passo é registrar um ou mais pagamentos. Neste guia vamos ver como gerar PIX de cobrança:
 * Analisando os dados obrigatórios e opcionais;
 * Como enviar a requisição;
 * Verificando os dados de retorno para acessar o PIX copia e cola;
@@ -21,8 +21,8 @@ Depois de ter cadastrado um pedido, o próximo passo é registrar um ou mais pag
 | Campo                | Descrição |
 | -------------------- |:--------------|
 | order_id             | ID do pedido gerado                                                    |
-| session_id           | Um identificador da sessão do usuário usando sua plataforma            |
-| method               | Método escolhido para pagamento, no caso PIX                           |
+| session_id           | Um identificador da sessão do usuário da sua plataforma                |
+| method               | Método escolhido para pagamento. (Use o valor PIX)                     |
 | pix                  | Detalhes do PIX                                                        |
 | pix.expiration       | Data e hora do vencimento do PIX, precisa ser uma data no futuro.      |
 | customer_id          | (Opcional) ID de um cliente já cadastrado                              |
@@ -37,9 +37,10 @@ No id externo (external_id) você pode informar um id que identifica este pagame
 ## Requisição
 
 Envie os dados em uma requisição POST para o endpoint de pagamentos conforme o formato abaixo, os dados opcionais não precisam ser enviados:
-Referência da API: Pagamentos
+
+[Referência da API: Pagamentos](https://docs.gen.com.br/#afd46332-94bb-45f1-8e99-be8e9fe19b41)
 ```bash
-curl -X POST "https://api-sandbox.gen.com.br/api/sellers/:sellerId/payments"
+curl -X POST "https://api-sandbox.genpag.com.br/api/sellers/:sellerId/payments" \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer (access token)' \
 --data '{
@@ -48,7 +49,7 @@ curl -X POST "https://api-sandbox.gen.com.br/api/sellers/:sellerId/payments"
         "order_id": "6c48f2e3-722a-8198-fffc-73b458502665",
         "method": "PIX",
         "pix": {
-            "expiration": "2022-04-01T00:05:00",
+            "expiration": "2022-04-01T00:05:00"
         },
         "customer_id": "e035c42f-1ad9-4edd-db73-ebc0a2b227cc",
         "customer": {
@@ -70,7 +71,8 @@ curl -X POST "https://api-sandbox.gen.com.br/api/sellers/:sellerId/payments"
           }
         },
         "external_id": "id_do_seu_sistema"
-    }'
+    }
+}'
 ```
 ## Retorno
 
@@ -109,19 +111,19 @@ Você pode disponibilizar via copia e cola ou construir um QRCode baseado neste 
 ```
 
 ## Revertendo um PIX
-Após a confirmação do PIX e mudança de status do pagamento para pago é possível realizar uma devolução total ou parcial do valor recebido.
+Após a confirmação do PIX e mudança de status do pagamento para pago (PAID) é possível realizar uma devolução total ou parcial do valor recebido.
 
 Você pode realizar a devolução através da chamada a seguir:
 ```bash
-curl -X POST "https://api-sandbox.gen.com.br/api/sellers/:sellerId/pix/refund/:paymentId"
+curl -X POST "https://api-sandbox.genpag.com.br/api/sellers/:sellerId/pix/refund/:paymentId" \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer (access token)' \
 --data '{
-   "amount": 2000
+   "amount": 2290
 }'
 ```
 
-O valor informado no campo amount deve estar entre 0 e o valor total do pagamento.
+O valor informado no campo amount deve estar entre 0 e o valor total do pagamento. Você irá utilizar na URL os ids da sua conta e do pagamento PIX gerado no retorno da última requisição.
 
 
 ## Mudanças de status

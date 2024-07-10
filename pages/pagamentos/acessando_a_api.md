@@ -21,7 +21,7 @@ Você utiliza a chave de acesso para acessar a API, realizar pagamentos, atualiz
 A chave de cliente **(client token)** você irá utilizar no endpoint de tokenizar cartão de crédito no momento do pagamento para gerar um token do cartão de crédito. Para saber mais sobre pagamentos com cartão de crédito consulte nosso guia Cobrando no Crédito.
 
 ## Gerando uma nova chave de atualização
-A chave de atualização **(refresh token)** não expira, caso você perca essa chave ou ela esteja comprometida, você pode gerar uma nova chave na dashboard da sua conta. Para isso, entre na plataforma e clique no seu perfil no canto superior direito e depois em **Perfil e Preferências**:
+A chave de atualização **(refresh token)** não expira, caso você perca essa chave ou ela esteja comprometida, você pode gerar uma nova chave na dashboard da sua conta. Para isso, entre na plataforma na versão [Sandbox](https://business-dev.gen.com.br) e clique no seu perfil no canto superior direito e depois em **Perfil e Preferências**:
 
 {% include image.html file="perfil-preferencias.png" caption="Acessando preferências da conta." %}
 
@@ -60,7 +60,7 @@ Pronto, agora que você já tem as chaves da sua conta em mãos veja os próximo
 
 * Veja como gerar pedidos através da nossa API utilizando as credenciais da sua conta. [Ver Tutorial]({% link pages/pagamentos/gerando_pedidos.md %});
 * Aprenda a gerar boletos para pedidos geradas. Ver Tutorial;
-* Aprenda a gerar PIX  de cobrança. Ver Tutorial;
+* Aprenda a gerar PIX  de cobrança. [Ver Tutorial]({% link pages/pagamentos/gerando_um_pix.md %});
 * Veja como cobrar um pedido no cartão de crédito. Ver Tutorial;
 * Cadastre webhooks para receber notificações de eventos da nossa API no seu sistema. Ver tutorial.
 

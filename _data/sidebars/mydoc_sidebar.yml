@@ -37,4 +37,9 @@ entries:
       output: web, pdf
       type: homepage
 
+    - title: Webhooks e Eventos
+      url: /webhooks-e-eventos.html
+      output: web, pdf
+      type: homepage
+
 # Copyright 2021 Google LLC
