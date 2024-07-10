@@ -5,7 +5,7 @@ last_updated: July 3, 2016
 tags: [cobranças, pagamentos, split, crédito, pix, boleto]
 summary: "Veja como gerar cobranças e escolher os métodos de pagamento que irá aceitar"
 sidebar: mydoc_sidebar
-permalink: gerando-cobrancas.html
+permalink: gerando-pedidos.html
 folder: pagamentos
 ---
 ## Introdução
@@ -26,7 +26,7 @@ Envie uma requisição POST na API de pedidos com os dados no formato a seguir:
 [Referência da API: Pedidos](https://docs.gen.com.br/#4617b1ac-d942-4645-bc0c-760e790c0c13)
 
 ``` bash
-curl -X POST 'https://api-dev.genpag.com.br/api/sellers/:sellerId/orders' \
+curl -X POST 'https://api-sandbox.genpag.com.br/api/sellers/:sellerId/orders' \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer (access token)' \
     --data '{
@@ -96,7 +96,7 @@ Os valores disponíveis são:
 * **PIX**: Pix de cobrança
 
 ```bash
-curl -X POST 'https://api-dev.genpag.com.br/api/sellers/:sellerId/orders' \
+curl -X POST 'https://api-sandbox.genpag.com.br/api/sellers/:sellerId/orders' \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer (access token)' \
     --data '{
@@ -118,7 +118,7 @@ curl -X POST 'https://api-dev.genpag.com.br/api/sellers/:sellerId/orders' \
 É possível parcelar os pagamentos no cartão de crédito em até 12x. Voce pode restringir o número máximo de parcelas para determinado pedido utilizando o campo **max_installments**. Essa restrição será aplicada em todas as nossas interfaces de checkout, seja por API, link de pagamento ou aplicativo. Confira o exemplo a seguir:
 
 ```bash
-curl -X POST 'https://api-dev.genpag.com.br/api/sellers/:sellerId/orders' \
+curl -X POST 'https://api-sandbox.genpag.com.br/api/sellers/:sellerId/orders' \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer (access token)' \
     --data '{
@@ -144,13 +144,29 @@ Ao criar uma nova fatura, você pode especificar uma lista de estabelecimentos p
 * **method**: Metodo de pagamento à qual essa taxa se aplica. É ecessário inserir uma entrada para cada método de pagamento e estabelecimento parceiro;
 Confira o exempo a seguir:
 
+## Página de Checkout
+
+Se você quiser uma integração rápida, disponibilizamos uma página de checkout pronta, basta redirecionar o usuário para noss checkout que final do fluxo redirecionamos ele de volta para seu sistema.
+Após criar o pedido, utilize o padrão de URL a seguir:
+
+// Ambiente de homologação
+// https://app-sandbox.genpag.com.br/orders/:id?redirectTo=<sua_url>
+"https://app-sandbox.genpag.com.br/orders/6d4476d7-542a-543b-81ca-966618b9f48a?redirectTo=https://example.com"
+
+// Ambiente de produção
+// https://app.genpag.com.br/orders/:id?redirectTo=<sua_url>
+"https://app.genpag.com.br/orders/6d4476d7-542a-543b-81ca-966618b9f48a?redirectTo=https://example.com"
+
+
+No campo :id utilize o ID do pedido gerado anteriormente e o usuário final irá acessar a interface de checkout.
+
+
 ## Pŕoximos passos
 
-Após gerar uma fatura, o próximo passo é registrar um ou mais pagamentos para completar o valor total da fatura. Vocẽ pode fazer isso usando nossa API ou nossas interfaces de checkout, você só vai precisar do ID da fatura gerada, veja os pŕoximos passos;
-* Utilize nos link de checkout para receber rapidamente sem se preocupar em implementar sua propria interface de pagamento. Ver tutorial
+Após gerar uma fatura, o próximo passo é registrar um ou mais pagamentos para completar o valor total da fatura. Vocẽ pode fazer isso usando nosso checkout, você só vai precisar do ID da fatura gerada, ou através de nossa API. Caso queira customizar toda a experiência do usuário veja os pŕoximos passos:
 * Aprenda a gerar boletos para faturas criadas;
-* Aprenda a gerar PIX de cobrança
-* Veja como realizar o pagamento de uma fatura utilizando cartão de crédito
+* Aprenda a gerar PIX de cobrança;
+* Veja como realizar o pagamento de uma fatura utilizando cartão de crédito;
 * Cadasre webhooks para receber notificações de eventos da nossa API no seu sistema.
 
 {% include links.html %}

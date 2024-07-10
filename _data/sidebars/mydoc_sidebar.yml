@@ -22,9 +22,18 @@ entries:
   - title: Pagamentos
     output: web, pdf
     folderitems:
+    - title: Acessando a API
+      url: /acessando-a-api.html
+      output: web, pdf
+      type: homepage
 
-    - title: Gerando Cobranças
-      url: /gerando-cobrancas.html
+    - title: Gerando Pedidos
+      url: /gerando-pedidos.html
+      output: web, pdf
+      type: homepage
+    
+    - title: Gerando um PIX
+      url: /gerando-um-pix.html
       output: web, pdf
       type: homepage
 
