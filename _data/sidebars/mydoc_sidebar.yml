@@ -36,6 +36,11 @@ entries:
       url: /gerando-um-pix.html
       output: web, pdf
       type: homepage
+    
+    - title: Cobrando no Crédito
+      url: /cobrando-no-credito.html
+      output: web, pdf
+      type: homepage
 
     - title: Webhooks e Eventos
       url: /webhooks-e-eventos.html
