@@ -59,8 +59,8 @@ Você deve realizar essa chamada a partir da sua aplicação cliente diretamente
 Pronto, agora que você já tem as chaves da sua conta em mãos veja os próximos passos:
 
 * Veja como gerar pedidos através da nossa API utilizando as credenciais da sua conta. [Ver Tutorial]({% link pages/pagamentos/gerando_pedidos.md %});
-* Aprenda a gerar boletos para pedidos geradas. Ver Tutorial;
 * Aprenda a gerar PIX  de cobrança. [Ver Tutorial]({% link pages/pagamentos/gerando_um_pix.md %});
+* Aprenda a gerar Boletos. [Ver Tutorial]({% link pages/pagamentos/gerando_um_boleto.md %});
 * Veja como cobrar um pedido no cartão de crédito. Ver Tutorial;
 * Cadastre webhooks para receber notificações de eventos da nossa API no seu sistema. Ver tutorial.
 

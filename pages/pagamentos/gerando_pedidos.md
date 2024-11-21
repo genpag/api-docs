@@ -156,8 +156,8 @@ No campo :id utilize o ID do pedido gerado anteriormente e o usuário final irá
 ## Pŕoximos passos
 
 Após gerar uma fatura, o próximo passo é registrar um ou mais pagamentos para completar o valor total da fatura. Vocẽ pode fazer isso usando nosso checkout, você só vai precisar do ID da fatura gerada, ou através de nossa API. Caso queira customizar toda a experiência do usuário veja os pŕoximos passos:
-* Aprenda a gerar boletos para faturas criadas. Ver Tutorial;
 * Aprenda a gerar PIX de cobrança. [Ver Tutorial]({% link pages/pagamentos/gerando_um_pix.md %});
+* Aprenda a gerar Boletos. [Ver Tutorial]({% link pages/pagamentos/gerando_um_boleto.md %});
 * Veja como realizar o pagamento de uma fatura utilizando cartão de crédito;
 * Cadasre webhooks para receber notificações de eventos da nossa API no seu sistema.
 
