@@ -1,26 +1,18 @@
-# Documentação da API Bolepix - Genpag (v2)
+# 📌 **Documentação da API Bolepix - Genpag V2**
 
-## Introdução
+### **📢 Aviso Importante**
 
-A **API Bolepix da Genpag** permite a criação, consulta e cancelamento de cobranças via **PIX e boleto** de forma unificada. A nova **versão 2 (v2)** da API será baseada em **REST**.
+Esta funcionalidade está em **Beta** e pode sofrer modificações nas próximas semanas. Todos os clientes impactados serão comunicados sobre eventuais alterações.
 
-Esta documentação descreve a estrutura e uso da API Bolepix, cobrindo os seguintes tópicos:
+## **📌 Introdução**
 
-1. **Criação de cobrança Bolepix Celcoin**
-2. **Geração do PDF da cobrança**
-3. **Consulta de cobranças**
-4. **Cancelamento de cobranças**
-5. **Retorno de cobrança**
-
-## **Aviso de Beta** 🚀
-
-⚠️ **Esta funcionalidade está em Beta** e pode sofrer modificações nas próximas semanas. Todos os clientes impactados serão comunicados em caso de alterações.
+O **Bolepix** é uma solução híbrida de pagamento que combina a praticidade do **PIX** com a segurança do **boleto bancário**. Esta documentação descreve a **integração da API Bolepix da Genpag V2**, totalmente **RESTful**.
 
 ---
 
-## **1. Teste de Criação de Cobrança Bolepix Celcoin**
+### **1️⃣ Criação de Cobrança Bolepix Celcoin**
 
-### **Autenticação na API**
+#### **🔑 Autenticação na API**
 
 Antes de criar uma cobrança, é necessário autenticar-se na API.
 
@@ -28,17 +20,15 @@ Antes de criar uma cobrança, é necessário autenticar-se na API.
 - **Realize o login** conforme descrito no documento [Autenticação e Token](https://www.notion.so/teste_chamadas_mostqi-12ffeb246d1d805faf70f3dfd321da4e?pvs=21)
 - **Configure o Bearer Token** para acessar os endpoints
 
-### **Criando uma Cobrança Bolepix**
+#### **🛠 Criando uma Cobrança**
 
 Após a autenticação, utilize a seguinte requisição para criar uma cobrança:
-
-#### **Endpoint REST**
 
 ```http
 POST /api/v2/payments/bolepix
 ```
 
-#### **Exemplo de Request (JSON)**
+**📌 Payload:**
 
 ```json
 {
@@ -68,7 +58,7 @@ POST /api/v2/payments/bolepix
 }
 ```
 
-#### **Exemplo de Resposta (JSON)**
+**📌 Resposta esperada:**
 
 ```json
 {
@@ -79,17 +69,15 @@ POST /api/v2/payments/bolepix
 
 ---
 
-## **2. Teste de Geração do PDF da Cobrança Bolepix Celcoin**
+### **2️⃣ Geração do PDF da Cobrança**
 
-### **Obtendo o PDF da Cobrança**
-
-#### **Endpoint REST**
+#### **📥 Obtendo o PDF da Cobrança**
 
 ```http
 GET /api/v2/payments/bolepix/{invoiceId}/pdf
 ```
 
-#### **Exemplo de Resposta (JSON)**
+**📌 Resposta esperada:**
 
 ```json
 {
@@ -99,17 +87,23 @@ GET /api/v2/payments/bolepix/{invoiceId}/pdf
 
 ---
 
-## **3. Teste de Consulta de Cobrança Bolepix Celcoin**
+### **3️⃣ Consulta de Cobranças**
 
-### **Listando Cobranças**
-
-#### **Endpoint REST**
+#### **📂 Listar todas as cobranças de um Seller**
 
 ```http
-GET /api/v2/payments/bolepix?sellerId={sellerId}
+GET /bolepix/invoices?sellerId={sellerId}
+Authorization: Bearer {TOKEN}
 ```
 
-#### **Exemplo de Resposta (JSON)**
+#### **📑 Obter detalhes de uma cobrança específica**
+
+```http
+GET /bolepix/invoices/{invoiceId}
+Authorization: Bearer {TOKEN}
+```
+
+**📌 Resposta esperada:**
 
 ```json
 [
@@ -125,17 +119,15 @@ GET /api/v2/payments/bolepix?sellerId={sellerId}
 
 ---
 
-## **4. Teste de Cancelamento de Cobrança Bolepix Celcoin**
+### **4️⃣ Cancelamento de Cobranças**
 
-### **Cancelando uma Cobrança**
-
-#### **Endpoint REST**
+#### **📛 Cancelando uma Cobrança**
 
 ```http
 POST /api/v2/payments/bolepix/{invoiceId}/cancel
 ```
 
-#### **Exemplo de Request (JSON)**
+**📌 Payload:**
 
 ```json
 {
@@ -143,24 +135,12 @@ POST /api/v2/payments/bolepix/{invoiceId}/cancel
 }
 ```
 
-#### **Exemplo de Resposta (JSON)**
+**📌 Resposta esperada:**
 
 ```json
 {
   "message": "Cobrança cancelada com sucesso"
 }
-```
-
----
-
-## **5. Teste de Retorno de Cobrança Bolepix**
-
-### **Verificando o Status da Cobrança**
-
-#### **Query SQL para validação**
-
-```sql
-SELECT * FROM payments WHERE invoice_id = 'ABC123';
 ```
 
 ---
@@ -172,13 +152,13 @@ SELECT * FROM payments WHERE invoice_id = 'ABC123';
 3. Cliente efetua pagamento via QR Code ou boleto
 4. Status atualizado via webhooks (`charge-in`, `charge-cancelled`)
 
-### **Webhooks e Atualizações de Status**
+#### **🌍 Webhooks Disponíveis**
 
-| Evento             | Descrição            |
-| ------------------ | -------------------- |
-| `charge-create`    | Cobrança gerada      |
-| `charge-in`        | Pagamento confirmado |
-| `charge-cancelled` | Cobrança cancelada   |
+| Evento             | Descrição                   |
+| ------------------ | --------------------------- |
+| `charge-create`    | Cobrança criada com sucesso |
+| `charge-in`        | Cobrança paga pelo cliente  |
+| `charge-cancelled` | Cobrança cancelada          |
 
 ---
 
