@@ -10,7 +10,7 @@ O **Bolepix** é uma solução híbrida de pagamento que combina a praticidade d
 
 ---
 
-### **1️⃣ Criação de Cobrança Bolepix Celcoin**
+### **1️⃣ Criação de Cobrança Bolepix**
 
 #### **🔑 Autenticação na API**
 
