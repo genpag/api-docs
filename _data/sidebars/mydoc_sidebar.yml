@@ -5,87 +5,88 @@ entries:
   product: API Gen Pag
   version: 1.0
   folders:
-    - title:
-      output: pdf
-      type: frontmatter
-      folderitems:
-        - title:
-          url: /titlepage.html
-          output: pdf
-          type: frontmatter
-        - title:
-          url: /tocpage.html
-          output: pdf
-          type: frontmatter
+  
+  - title:
+    output: pdf
+    type: frontmatter
+    folderitems:
+      - title:
+        url: /titlepage.html
+        output: pdf
+        type: frontmatter
+      - title:
+        url: /tocpage.html
+        output: pdf
+        type: frontmatter
 
-    - title: Pagamentos
-      output: web, pdf
-      folderitems:
-        - title: Acessando a API
-          url: /acessando-a-api.html
-          output: web, pdf
-          type: homepage
+  - title: Pagamentos
+    output: web, pdf
+    folderitems:
+      - title: Acessando a API
+        url: /acessando-a-api.html
+        output: web, pdf
+        type: homepage
 
-        - title: Gerando Pedidos
-          url: /gerando-pedidos.html
-          output: web, pdf
-          type: homepage
+      - title: Gerando Pedidos
+        url: /gerando-pedidos.html
+        output: web, pdf
+        type: homepage
 
-        - title: Gerando um PIX
-          url: /gerando-um-pix.html
-          output: web, pdf
-          type: homepage
+      - title: Gerando um PIX
+        url: /gerando-um-pix.html
+        output: web, pdf
+        type: homepage
 
-        - title: Gerando um Boleto
-          url: /gerando-um-boleto.html
-          output: web, pdf
-          type: homepage
+      - title: Gerando um Boleto
+        url: /gerando-um-boleto.html
+        output: web, pdf
+        type: homepage
 
-        - title: Cobrando no Crédito
-          url: /cobrando-no-credito.html
-          output: web, pdf
-          type: homepage
+      - title: Cobrando no Crédito
+        url: /cobrando-no-credito.html
+        output: web, pdf
+        type: homepage
 
-        - title: API Gen Pag 2.0
-          url: /api-genpag-v2.html
-          output: web, pdf
-          type: homepage
-          subfolders:
-            - title: Bolepix
-              output: web, pdf
-              folderitems:
-                - title: Introdução ao Bolepix
-                  url: /pagamentos/API-Gen-Pag-2.0/bolepix.html
-                  output: web, pdf
-                  type: homepage
+      - title: API Gen Pag 2.0
+        url: /api-genpag-v2.html
+        output: web, pdf
+        type: homepage
+        subfolders:
+          - title: Bolepix
+            output: web, pdf
+            folderitems:
+              - title: Introdução ao Bolepix
+                url: /pagamentos/API-Gen-Pag-2.0/bolepix.html
+                output: web, pdf
+                type: homepage
 
-                - title: Criando uma Cobrança Bolepix
-                  url: /pagamentos/API-Gen-Pag-2.0/criando-cobranca-bolepix.html
-                  output: web, pdf
-                  type: homepage
+              - title: Criando uma Cobrança Bolepix
+                url: /pagamentos/API-Gen-Pag-2.0/criando-cobranca-bolepix.html
+                output: web, pdf
+                type: homepage
 
-                - title: Gerando o PDF da Cobrança
-                  url: /pagamentos/API-Gen-Pag-2.0/gerando-pdf-bolepix.html
-                  output: web, pdf
-                  type: homepage
+              - title: Gerando o PDF da Cobrança
+                url: /pagamentos/API-Gen-Pag-2.0/gerando-pdf-bolepix.html
+                output: web, pdf
+                type: homepage
 
-                - title: Consultando Cobranças
-                  url: /pagamentos/API-Gen-Pag-2.0/consultando-cobranca-bolepix.html
-                  output: web, pdf
-                  type: homepage
+              - title: Consultando Cobranças
+                url: /pagamentos/API-Gen-Pag-2.0/consultando-cobranca-bolepix.html
+                output: web, pdf
+                type: homepage
 
-                - title: Cancelando uma Cobrança
-                  url: /pagamentos/API-Gen-Pag-2.0/cancelando-cobranca-bolepix.html
-                  output: web, pdf
-                  type: homepage
+              - title: Cancelando uma Cobrança
+                url: /pagamentos/API-Gen-Pag-2.0/cancelando-cobranca-bolepix.html
+                output: web, pdf
+                type: homepage
 
-                - title: Webhooks e Retorno de Cobranças
-                  url: /pagamentos/API-Gen-Pag-2.0/webhooks-bolepix.html
-                  output: web, pdf
-                  type: homepage
+              - title: Webhooks e Retorno de Cobranças
+                url: /pagamentos/API-Gen-Pag-2.0/webhooks-bolepix.html
+                output: web, pdf
+                type: homepage
 
-        - title: Webhooks e Eventos
-          url: /webhooks-e-eventos.html
-          output: web, pdf
-          type: homepage
+      - title: Webhooks e Eventos
+        url: /webhooks-e-eventos.html
+        output: web, pdf
+        type: homepage
 # Copyright 2021 Google LLC
