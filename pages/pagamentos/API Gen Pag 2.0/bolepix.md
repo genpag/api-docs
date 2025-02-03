@@ -1,3 +1,14 @@
+---
+title: Bolepix - API Gen Pag 2.0
+keywords: bolepix, pagamentos, API, Gen Pag, V2, pix, boleto, webhook
+last_updated: February 3, 2025
+tags: [bolepix, pagamentos, pix, boleto, api]
+summary: "Documentação da API Bolepix na versão 2.0 da Gen Pag, incluindo criação de cobranças, geração de PDF, consulta, cancelamento e webhooks."
+sidebar: mydoc_sidebar
+permalink: pagamentos/API-Gen-Pag-2.0/bolepix.html
+folder: pagamentos/API-Gen-Pag-2.0
+---
+
 # 📌 **Documentação da API Bolepix - Genpag V2**
 
 ### **📢 Aviso Importante**
